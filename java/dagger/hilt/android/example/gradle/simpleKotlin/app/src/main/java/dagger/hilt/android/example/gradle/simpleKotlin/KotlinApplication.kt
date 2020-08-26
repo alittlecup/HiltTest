@@ -22,9 +22,4 @@ import javax.inject.Inject
 
 @HiltAndroidApp
 class KotlinApplication : Application() {
-  // Shows that we can inject ApplicationComponent bindings into an application.
-  @Inject
-  @Model
-  @JvmField
-  var model: String? = null
 }

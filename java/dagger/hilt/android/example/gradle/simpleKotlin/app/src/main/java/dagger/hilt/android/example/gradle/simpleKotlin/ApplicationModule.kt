@@ -16,11 +16,16 @@
 
 package dagger.hilt.android.example.gradle.simpleKotlin
 
+import android.app.Activity
+import android.app.Application
+import android.content.Context
 import android.os.Build
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.android.scopes.ActivityScoped
+import javax.inject.Singleton
 
 @Module
 @InstallIn(ApplicationComponent::class)

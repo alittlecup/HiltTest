@@ -16,7 +16,6 @@
 
 package dagger.hilt.android.example.gradle.simpleKotlin
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
@@ -25,7 +24,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class MainActivity : BaseActivity() {
+class SecondActivity : AppCompatActivity() {
   // Shows that we can inject Application/Activity bindings into an activity.
   @JvmField
   @Model
@@ -46,11 +45,8 @@ class MainActivity : BaseActivity() {
     val greeting = findViewById<View>(R.id.greeting) as TextView
     val text = resources.getString(R.string.welcome, name, model)
     greeting.text = text
-    greeting.setOnClickListener {
-      startActivity(Intent(this@MainActivity, SecondActivity::class.java))
-    }
-    val mainFragment = MainFragment()
-    supportFragmentManager.beginTransaction().add(mainFragment, "main").commit()
+    supportFragmentManager.beginTransaction().add(SecondFragment(), "second").commit()
+
     testApplicationHilt.toast()
   }
 }

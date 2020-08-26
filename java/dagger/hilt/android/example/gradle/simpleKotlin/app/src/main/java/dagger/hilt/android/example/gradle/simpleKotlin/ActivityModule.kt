@@ -15,10 +15,25 @@
  */
 package dagger.hilt.android.example.gradle.simpleKotlin
 
+import android.app.Activity
+import android.app.Application
+import android.content.Context
+import android.util.Log
+import androidx.fragment.app.FragmentActivity
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityComponent
+import dagger.hilt.android.scopes.ActivityRetainedScoped
+import dagger.hilt.android.scopes.ActivityScoped
+import javax.inject.Singleton
+
+data class TestApplicationHilt(val application: Context) {
+  fun toast() {
+    Log.d("TestApplicationHilt", "toast: $application")
+    Log.d("TestApplicationHilt", "toast parent: ${application.javaClass.superclass?.simpleName} ")
+  }
+}
 
 @Module
 @InstallIn(ActivityComponent::class)
@@ -28,4 +43,12 @@ object ActivityModule {
   fun provideUserName(): String {
     return "Android User"
   }
+
+  @Provides
+  @ActivityScoped
+  fun provideHiltApplication(application: Activity): TestApplicationHilt {
+    return TestApplicationHilt(application)
+  }
+
+
 }
